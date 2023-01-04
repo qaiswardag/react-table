@@ -1,5 +1,5 @@
 // todos
-import { useState } from "react";
+import { useState } from 'react';
 const [data, setData] = useState([]);
 
 // fetch data
@@ -12,6 +12,7 @@ const fetchData = async function (url) {
   };
 };
 
+// test
 // invoke method
 fetchData();
 

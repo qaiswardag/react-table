@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-table": "8.7.6",
+    "@faker-js/faker": "^7.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-table": "^7.8.0"

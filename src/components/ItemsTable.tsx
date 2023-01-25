@@ -117,8 +117,8 @@ export default function ItemsTable() {
   });
 
   return (
-    <div className="p-2">
-      <div>
+    <div className="p-2 m-2 border-2 border-black rounded">
+      <div className="">
         <input
           value={globalFilter ?? ''}
           onChange={(e) => setGlobalFilter(e.target.value)}

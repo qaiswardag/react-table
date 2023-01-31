@@ -1,8 +1,6 @@
+import '../index.css';
 import React, { HTMLProps } from 'react';
 import ReactDOM from 'react-dom/client';
-
-import '../index.css';
-
 import { makeData, Person } from '../makeData';
 
 import {
@@ -117,7 +115,7 @@ export default function ItemsTable() {
   });
 
   return (
-    <div className="p-2 m-2 border-2 border-black rounded">
+    <div>
       <div className="">
         <input
           value={globalFilter ?? ''}

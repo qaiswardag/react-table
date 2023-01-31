@@ -1,9 +1,80 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import '../index.css';
+import { useFetch } from '../hooks/useFetch';
+import { useTable } from 'react-table';
 
-export default function FilterTable() {
+export default function FilterTable(props) {
+  const pathProducts = `https://fakestoreapi.com/products`;
+
+  const {
+    handleData: handleDataProducts,
+    fetchedData: fetchedDataProducts,
+    isError: isErrorProducts,
+    setIsError: setIsErrorProducts,
+  } = useFetch();
+
+  const fetchProducts = async function () {
+    try {
+      const body = await handleDataProducts(
+        pathProducts,
+        {},
+        {
+          isLoading: true,
+          additionalCallTime: 100,
+          abortTimeoutTime: 8000,
+        }
+      );
+      return body.data;
+    } catch (err) {
+      setIsErrorProducts((prevError: any) => [
+        `${err}. ${prevError ? prevError : ''}`,
+      ]);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  // cache data if the data have not been changed
+  const data = useMemo(function () {
+    return [
+      {
+        id: 1,
+        title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+        price: 109.95,
+        description:
+          'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
+        category: "men's clothing",
+        image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+        rating: {
+          rate: 3.9,
+          count: 120,
+        },
+      },
+    ];
+  }, []);
+
+  const columns = useMemo(function () {
+    [
+      {
+        // what is the title of the column we want to display
+      },
+    ];
+  }, []);
+
+  // table logic
+  // const tableInstance = useTable({});
   return (
-    <div className="p-2 m-2 border-2 border-emerald-500 rounded">
+    <div>
+      <div className="border-2 border-gray-300 px-4 py-4 mt-8 mb-12 rounded">
+        <ul className="list-disc list-none">
+          <li>For the table API we will use: Table API</li>
+          <li>For the table API we will use: Table API</li>
+          <li>For the table API we will use: Table API</li>
+        </ul>
+      </div>
       <table style={{ width: '100%' }} className="table-auto">
         <thead>
           <tr>

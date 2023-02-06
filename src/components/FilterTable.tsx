@@ -1,21 +1,24 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import '../index.css';
-import { useFetch } from '../hooks/useFetch';
 import { useTable } from 'react-table';
+import { reactFetch } from 'lightweight-react-fetch';
 
 export default function FilterTable(props) {
   const pathProducts = `https://fakestoreapi.com/products`;
 
+  // use React fetch
   const {
-    handleData: handleDataProducts,
-    fetchedData: fetchedDataProducts,
-    isError: isErrorProducts,
-    setIsError: setIsErrorProducts,
-  } = useFetch();
+    handleData,
+    fetchedData,
+    isError,
+    validationProperties,
+    isLoading,
+    isSuccess,
+  } = reactFetch();
 
   const fetchProducts = async function () {
     try {
-      const body = await handleDataProducts(
+      const body = await handleData(
         pathProducts,
         {},
         {
@@ -24,12 +27,11 @@ export default function FilterTable(props) {
           abortTimeoutTime: 8000,
         }
       );
+      console.log('body is:', body);
       return body.data;
     } catch (err) {
-      setIsErrorProducts((prevError: any) => [
-        `${err}. ${prevError ? prevError : ''}`,
-      ]);
-      return null;
+      console.log('Error fetching products!');
+      return [];
     }
   };
 

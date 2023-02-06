@@ -12,6 +12,7 @@
     "@faker-js/faker": "^7.6.0",
     "@tanstack/react-table": "8.7.6",
     "@types/react-table": "^7.7.14",
+    "lightweight-react-fetch": "^1.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
